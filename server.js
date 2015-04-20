@@ -17,5 +17,13 @@ var allServers = function (err, containers){
 	console.log(servers);
 	return servers;
 }
-docker.listContainers(allServers);
 
+var http = require('http');
+
+http.createServer(function (req, res) {
+	res.writeHead(200, {'Content-Type': 'text/plain'});
+	respond = function (err, containers){
+		allServers(res, containers);
+	}
+	docker.listContainers(respond);
+}).listen(9001, '0.0.0.0');
