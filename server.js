@@ -10,7 +10,7 @@ var allServers = function (res, containers){
 			data.Config.Env.forEach(function(env){
 				env = env.split('=');
 				if ("VIRTUAL_HOST" === env[0]){
-					servers.push(env[1]);
+					servers.push("<a href=\"https://" + env[1] + "\">" + env[1] + "</a><hr/>");
 				}
 			});
 			console.log(servers);
@@ -26,7 +26,7 @@ var allServers = function (res, containers){
 var http = require('http');
 
 http.createServer(function (req, res) {
-	res.writeHead(200, {'Content-Type': 'text/plain'});
+	res.writeHead(200, {'Content-Type': 'text/html'});
 	respond = function (err, containers){
 		allServers(res, containers);
 	}
