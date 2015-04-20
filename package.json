@@ -1,0 +1,27 @@
+{
+  "name": "echoserver",
+  "version": "0.0.0",
+  "description": "Got connection",
+  "main": "server.js",
+  "dependencies": {
+    "datejs": "~1.0.0-rc3",
+    "moment": "~2.10.2",
+    "http": "0.0.0",
+    "net": "~1.0.2",
+    "dockerode": "~2.1.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/hibooboo2/echoserver.git"
+  },
+  "author": "James Harris",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hibooboo2/echoserver/issues"
+  }
+}
