@@ -1,10 +1,12 @@
 var Docker = require('dockerode');
 var docker = Docker();
-var allServers = function (err, containers){
+var moment = require('moment');
+var allServers = function (res, containers){
 	var servers = [];
+	var checked = 0;
 	containers.forEach(function (containerInfo){
 		docker.getContainer(containerInfo.Id).inspect(function(err, data){
-//			console.log(data);
+			checked += 1;
 			data.Config.Env.forEach(function(env){
 				env = env.split('=');
 				if ("VIRTUAL_HOST" === env[0]){
@@ -12,9 +14,12 @@ var allServers = function (err, containers){
 				}
 			});
 			console.log(servers);
+			if (checked == containers.length){
+				res.end(servers.toString());
+				console.log(moment().toLocaleString() + '  ' + servers);
+			}
 		});
 	});
-	console.log(servers);
 	return servers;
 }
 
