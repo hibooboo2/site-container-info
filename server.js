@@ -1,6 +1,11 @@
 var Docker = require('dockerode');
 var docker = Docker();
 var moment = require('moment');
+
+var containerToRow = function(container){
+	
+}
+
 var allServers = function (res, containers){
 	var servers = [];
 	var checked = 0;
@@ -10,11 +15,13 @@ var allServers = function (res, containers){
 			data.Config.Env.forEach(function(env){
 				env = env.split('=');
 				if ("VIRTUAL_HOST" === env[0]){
-					servers.push("<a href=\"https://" + env[1] + "\">" + env[1] + "</a><hr/>");
+					server = {"name": env[1], "id": data.Id}
+					servers.push(server)"<a href=\"https://" + env[1] + "\">" + env[1] + "</a> Container name= " + data.Id + "<hr/>");
 				}
 			});
 			console.log(servers);
 			if (checked == containers.length){
+				responseText = "";
 				res.end(servers.toString());
 				console.log(moment().toLocaleString() + '  ' + servers);
 			}
