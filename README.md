@@ -1,3 +1,5 @@
-Simple node server that you can hit to findout if you have a connection to where ever the server is running.
+Node server you run on a docker host. Assuming you have a https://github.com/jwilder/nginx-proxy container setup.
 
-Might add other small random things to it like getting a random quote from /r or other things.
+this server will tell you what servers the proxy is exposing and their urls. 
+
+So if you run `docker run -d -e VIRTUAL_HOST=x.example.com ghost` You can go to x.example.com and a ghost install will be there.
